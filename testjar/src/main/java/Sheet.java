@@ -3,8 +3,10 @@ import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
+import ouc.cs.course.java.model.MusicSheet;
 
-public class Sheet {
+
+public class Sheet extends MusicSheet {
 	private String id;
 	private String name;
 	private String date;
@@ -30,7 +32,7 @@ public class Sheet {
 		date = formatter.format(new Date());
 	}
 	
-	public String getId()
+	public String getUuid()
 	{
 		return id;
 	}
@@ -40,22 +42,22 @@ public class Sheet {
 		return name;
 	}
 	
-	public String getDate()
+	public String getDateCreated()
 	{
 		return date;
 	}
 	
-	public String getOwnerId()
+	public String getCreatorId()
 	{
 		return owner_id;
 	}
 	
-	public String getImagePath()
+	public String getPicture()
 	{
 		return image_path;
 	}
 	
-	public void setId(String id)
+	public void setUuid(String id)
 	{
 		this.id = id;
 	}
@@ -65,17 +67,17 @@ public class Sheet {
 		this.name = name;
 	}
 	
-	public void setDate(String date)
+	public void setDateCreated(String date)
 	{
 		this.date = date;
 	}
 	
-	public void setOwnerId(String id)
+	public void setCreatorId(String id)
 	{
 		this.owner_id = id;
 	}
 	
-	public void setImagePath(String path)
+	public void setPicture(String path)
 	{
 		this.image_path = path;
 	}

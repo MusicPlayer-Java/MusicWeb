@@ -37,7 +37,7 @@ public class SheetHelper {
 	}
 	
 	// 根据歌单ID获取歌单信息
-	public static Sheet getSheet(int id)
+	public static Sheet getSheet(String id)
 	{
 		SqlHelper.getConnection();
 		String sql = "select * from Sheet where SheetId = '" + id + "';";
@@ -49,7 +49,7 @@ public class SheetHelper {
 	}
 	
 	// 根据歌单ID获取歌单中全部歌曲信息
-	public static ArrayList getAllSongs(int id)
+	public static ArrayList getAllSongs(String id)
 	{
 		SqlHelper.getConnection();
 		String sql = "select * from Music where SheetId = '" + id + "';";
@@ -88,9 +88,15 @@ public class SheetHelper {
 			ms.setUuid((String) jms.get("uuid"));
 			ms.setName((String) jms.get("name"));
 			ms.setCreator((String) jms.get("creator"));
-			ms.setCreatorId((String) jms.get("creatorId"));
+			if(jms.get("creatorId") == null)
+				ms.setCreatorId(null);
+			else
+			 ms.setCreatorId(jms.get("creatorId").toString());
 			ms.setDateCreated((String) jms.get("dateCreated"));
-			ms.setPicture((String) jms.get("picture"));
+			if(jms.get("picture") == null)
+				ms.setPicture(null);
+			else
+				ms.setPicture(jms.get("picture").toString());
 			String mi = jms.get("musicItems").toString();
 			mi = mi.substring(0, mi.length()-1);
 			String[] musics = mi.split(",");
@@ -100,7 +106,11 @@ public class SheetHelper {
 					int index1 = items[0].indexOf('"');
 					int index2 = items[0].lastIndexOf('"');
 					int size = items[1].length();
-					mum.put(items[0].substring(index1, index2), items[1].substring(1, size-5));
+					int index3 = items[1].lastIndexOf('"');
+					if(items[1].indexOf('.') != -1)
+						mum.put(items[0].substring(index1, index2), items[1].substring(1, size-5));
+					else
+						mum.put(items[0].substring(index1, index2), items[1].substring(1));
 				}				
 			}					
 			ms.setMusicItems(mum);
