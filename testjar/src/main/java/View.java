@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -221,7 +222,12 @@ public class View {
 						// TODO Auto-generated method stub
 						sheet = (MusicSheet) xSheet;
 						musics = null;
-						musics = SheetHelper.getAllSongs(sheet.getUuid().toString());
+						//musics = SheetHelper.getAllSongs(sheet.getUuid().toString());
+						Map map =(Map) xSheet.getMusicItems();
+						String[] msList = new String[map.size()];
+						map.values().toArray(msList);
+						
+						
 						
 						intro.setText("<html><body><span style='color:red;'>   "+sheet.getName()+"</span><br><br><br><span style='color:red;'>   "+sheet.getCreatorId()+"</span>于<span style='color:red;'>"+sheet.getDateCreated()+"</span>创建"+"<body></html>");
 						jPanel2.remove(list);
