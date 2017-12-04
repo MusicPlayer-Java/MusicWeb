@@ -1,20 +1,6 @@
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import ouc.cs.course.java.model.MusicSheet;
-
-import ouc.cs.course.java.model.MusicSheet;
-import ouc.cs.course.java.musicclient.MusicOperationClient;
 
 public class main {
 	public static void main(String[] args) throws HttpException, IOException{
@@ -28,6 +14,11 @@ public class main {
 			System.out.println(s[i]);
 		}*/
 		//"create table if not exists Music(MusicId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(30) NOT NULL, Singer VARCHAR(30) NOT NULL, SheetId INT NOT NULL, MusicMd5 VARCHAR(40) NOT NULL, MusicPath VARCHAR(100) NOT NULL, Time VARCHAR(10) NOT NULL);" );
+		
+		View view = new View();
+		
+		view.init();
+		
 		
 		}
 
