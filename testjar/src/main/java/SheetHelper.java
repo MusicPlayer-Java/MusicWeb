@@ -160,7 +160,7 @@ public class SheetHelper {
 	}
 	
 	// 创建歌单
-	public static void createSheet(String name, String imagePath)
+	public static void createSheet(String name, String imagePath, String creator, String creatorId)
 	{
 		Sheet mySheet = new Sheet();
 		mySheet.setName(name);
@@ -171,7 +171,7 @@ public class SheetHelper {
 		imagePath = "/images/" + imageName;
 		mySheet.setPicture(imagePath);
 		SqlHelper.getConnection();
-		String sql = "insert into Sheet values('" + mySheet.getUuid() + "','" + mySheet.getName() + "','" + mySheet.getDateCreated() + "','" + mySheet.getCreatorId() + "','" + mySheet.getPicture() + "')";
+		String sql = "insert into Sheet values('" + mySheet.getUuid() + "','" + mySheet.getName() + "','" + mySheet.getDateCreated() + "','" + creatorId + "','" + creator + "','" + mySheet.getPicture() + "')";
 		SqlHelper.update(sql);		
 		SqlHelper.closeConnection();
 	}

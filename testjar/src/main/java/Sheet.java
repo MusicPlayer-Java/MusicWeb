@@ -28,7 +28,7 @@ public class Sheet extends MusicSheet {
 		date = hm.get("Date").toString();
 		owner_id = hm.get("OwnerId").toString();
 		image_path = root + hm.get("ImagePath").toString();
-		owner_name = "UNKNOWN";
+		owner_name = hm.get("OwnerName").toString();
 		SqlHelper.getConnection();
 		ArrayList ls = SqlHelper.select("select * from Music where SheetId = '" + id + "'");
 		Iterator it = ls.iterator(); 
@@ -47,8 +47,6 @@ public class Sheet extends MusicSheet {
 		id = UUID.randomUUID().toString().replaceAll(s1, s2);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		date = formatter.format(new Date());
-		owner_id = "16020032011";
-		owner_name = "UNKNOWN";
 	}
 	
 	public String getUuid()

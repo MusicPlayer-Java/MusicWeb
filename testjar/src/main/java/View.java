@@ -1,6 +1,7 @@
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+<<<<<<< HEAD
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -13,6 +14,33 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+=======
+import java.awt.TextField;
+import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Map;
+
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
+>>>>>>> b8cc915a28c37c9c1dd25037c87d5b8ca2ada296
 
 import org.apache.commons.httpclient.HttpException;
 
@@ -48,6 +76,12 @@ public class View {
 	private JLabel last = null;
 	private JLabel next = null;
 	
+<<<<<<< HEAD
+=======
+	private String name, creater, id,path,time;
+	
+	
+>>>>>>> b8cc915a28c37c9c1dd25037c87d5b8ca2ada296
 	public View() throws HttpException, IOException {
 		
 		initMusicList();
@@ -59,10 +93,15 @@ public class View {
 	private void initMusicConsole() {
 		// TODO Auto-generated method stub
 		jPanel3 = Component.getPanel(1300, 100);
+<<<<<<< HEAD
 		
 		jPanel3.setBackground(java.awt.Color.gray);
 		
 
+=======
+		jPanel3.setBackground(java.awt.Color.gray);
+		
+>>>>>>> b8cc915a28c37c9c1dd25037c87d5b8ca2ada296
 		/*===============播放窗口-具体内容===============*/
 		//final JButton btnLast =Component.getButtom(100, 60, 18, "播放");
 		//final JButton btnNext = getButtom(100, 60, 18, "暂停");
@@ -197,11 +236,19 @@ public class View {
 		jLableOtherTitle = (JLabel) Component.getLable(280, 50, 18, "别人都在听");
 		jPanel12 = Component.getPanel(280, 380);
 		jLableMyTitle = Component.getLable(280, 40, 18,"我的歌单");
+<<<<<<< HEAD
 		jLableMylist = Component.getLable(280, 320);
+=======
+		jLableMylist = Component.getLable(280, 280);
+>>>>>>> b8cc915a28c37c9c1dd25037c87d5b8ca2ada296
 		
 		
 		jPanel1.add(jPanel11);
 		jPanel11.add(jLableOtherTitle);
+<<<<<<< HEAD
+=======
+		//jPanel11.setBackground(java.awt.Color.gray);
+>>>>>>> b8cc915a28c37c9c1dd25037c87d5b8ca2ada296
 		System.out.println(othersSheet.size());
 		if (othersSheet.size() > 0) {
 			for (int i = 0; i < (othersSheet.size()>4?othersSheet.size():4); i++) {
@@ -311,6 +358,10 @@ public class View {
 		jPanel1.add(jPanel12);
 		jPanel12.add(jLableMyTitle);
 		jPanel12.add(jLableMylist);;
+<<<<<<< HEAD
+=======
+		//jPanel12.setBackground(java.awt.Color.gray);
+>>>>>>> b8cc915a28c37c9c1dd25037c87d5b8ca2ada296
 		if (mySheet.size() > 0) {
 			for (int i = 0; i < mySheet.size(); i++) {
 				final MusicSheet xSheet = (MusicSheet) mySheet.get(i);
@@ -414,6 +465,134 @@ public class View {
 				jLableMylist.add(my);
 			}
 		}
+<<<<<<< HEAD
+=======
+		JLabel jLabelAdd = Component.getLable(280, 40, 20, "创建歌单");
+		jPanel12.add(jLabelAdd);
+		
+		
+		jLabelAdd.addMouseListener(new MouseListener() {
+			
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				final JFrame addSheet = new JFrame("create sheet");
+				addSheet.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+				addSheet.setVisible(true);
+				addSheet.setSize(530,640);
+				addSheet.setLayout(new FlowLayout());  //设置jframe布局
+				Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+		        int sreen_width = screensize.width;	//获取屏幕宽度
+		        int sreen_height = screensize.height;  //获取屏幕高度
+		        addSheet.setLocation((sreen_width-530)/2, (sreen_height - 640)/2);
+		        
+		        JPanel blank1 = Component.getPanel(500, 60);
+		        JPanel blank2 = Component.getPanel(500, 60);
+		        JPanel blank3 = Component.getPanel(500, 60);
+		        JPanel blank4 = Component.getPanel(500, 60);
+		        JLabel lbName = Component.getLable(150, 50, 20, "歌单名字:");
+		        final TextField txtName = Component.getTextField(300, 40);
+		        JLabel lbCreator = Component.getLable(150, 50, 20, "创建人:");
+		        final TextField txtCretor = Component.getTextField(300, 40);
+		        JLabel lbUp = Component.getLable(150, 50, 20, "设置封面:");
+		        JLabel lbMusic = Component.getLable(300, 50, 20, "上传图片");
+		        
+		        
+		        
+		        lbMusic.addMouseListener(new MouseListener() {
+					
+					public void mouseReleased(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					public void mousePressed(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					public void mouseExited(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					public void mouseClicked(MouseEvent e) {
+						// TODO Auto-generated method stub
+						JFileChooser jfc = new JFileChooser();
+						if(jfc.showOpenDialog(addSheet)==JFileChooser.APPROVE_OPTION ){
+							//System.out.println(jfc.getSelectedFile().getAbsolutePath());
+							path = jfc.getSelectedFile().getAbsolutePath();
+						}
+					}
+				});
+		        JLabel lbSub = Component.getLable(450, 50, 20, "                                 创建歌单");
+		        lbSub.addMouseListener(new MouseListener() {
+					
+					public void mouseReleased(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					public void mousePressed(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					public void mouseExited(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					public void mouseEntered(MouseEvent e) {
+						// TODO Auto-generated method stub
+						
+					}
+					
+					public void mouseClicked(MouseEvent e) {
+						// TODO Auto-generated method stub
+						name = txtName.getText();
+						creater = txtCretor.getText();
+						//time = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date());
+					}
+				});
+		        addSheet.add(blank1);
+		        addSheet.add(lbName);
+		        addSheet.add(txtName);
+		        addSheet.add(blank2);
+		        addSheet.add(lbCreator);
+		        addSheet.add(txtCretor);
+		        addSheet.add(blank3);
+		        addSheet.add(lbUp);
+		        addSheet.add(lbMusic);
+		        addSheet.add(blank4);
+		        addSheet.add(lbSub);
+			}
+		});
+>>>>>>> b8cc915a28c37c9c1dd25037c87d5b8ca2ada296
 	}
 
 	public void init() throws HttpException, IOException {
