@@ -4,7 +4,7 @@ public class Music {
 	private int id;
 	private String name;
 	private String singer;
-	private String sheet_id;
+	private int sheet_id;
 	private String md5;
 	private String path;
 	private String time;
@@ -16,8 +16,7 @@ public class Music {
 		id = Integer.parseInt(hm.get("MusicId").toString());
 		name = hm.get("Name").toString();
 		singer = hm.get("Singer").toString();
-		//sheet_id = Integer.parseInt(hm.get("SheetId").toString());
-		sheet_id =hm.get("SheetId").toString();
+		sheet_id = Integer.parseInt(hm.get("SheetId").toString());
 		md5 = hm.get("MusicMd5").toString();
 		path = root + hm.get("MusicPath").toString();		
 		time = hm.get("Time").toString();
@@ -38,7 +37,7 @@ public class Music {
 		return singer;
 	}
 	
-	public String getSheetId()
+	public int getSheetId()
 	{
 		return sheet_id;
 	}
