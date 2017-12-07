@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -42,10 +43,16 @@ public class SheetHelper {
 		SqlHelper.getConnection();
 		String sql = "select * from Sheet where SheetId = '" + id + "';";
 		List ls = SqlHelper.select(sql);
+		System.out.println(ls.size());
 		SqlHelper.closeConnection();
-		Map hm = (Map)ls.get(0);
-		Sheet mySheet = new Sheet(hm);
-		return mySheet;
+		if(ls.size() > 0) {
+			Map hm = (Map)ls.get(0);
+			Sheet mySheet = new Sheet(hm);
+			return mySheet;
+		}
+		else {
+			return null;
+		}
 	}
 	
 	// 根据歌单ID获取歌单中全部歌曲信息
@@ -127,5 +134,45 @@ public class SheetHelper {
 		moc.downloadMusicSheetPicture(md5, "./images");
 		String path = System.getProperty("user.dir").toString().replace('\\', '/') + "/images/" + pictureName;
 		return path;
+	}
+	
+	// 上传歌单
+	public static void uploadSheet(MusicSheet sheet)
+	{
+		MusicOperationClient moc = new MusicOperationClient();
+		List filePaths = new ArrayList();
+		SqlHelper.getConnection();
+		ArrayList musics = SqlHelper.select("select MusicPath from Music where SheetId = '" + sheet.getUuid() + "'");
+		SqlHelper.closeConnection();
+		Iterator it = musics.iterator();   
+		while(it.hasNext()) {   
+		    Map hm = (Map)it.next();
+		    String path = System.getProperty("user.dir").toString().replace('\\', '/') + hm.get("MusicPath").toString();
+		    System.out.println(path);
+		    filePaths.add(path);
+		} 		
+		MusicSheet ms = new MusicSheet();
+		ms.setCreatorId(sheet.getCreatorId());
+		ms.setPicture(sheet.getPicture());
+		ms.setCreator(sheet.getCreator());
+		ms.setName(sheet.getName());
+		moc.createMusicSheetAndUploadFiles(ms, filePaths);
+	}
+	
+	// 创建歌单
+	public static void createSheet(String name, String imagePath)
+	{
+		Sheet mySheet = new Sheet();
+		mySheet.setName(name);
+		File f = new File(imagePath);
+		String imageName = f.getName();
+		String newPath = System.getProperty("user.dir").toString().replace('\\', '/') + "/images/" + imageName;
+		FileHelper.copyFile(imagePath, newPath);
+		imagePath = "/images/" + imageName;
+		mySheet.setPicture(imagePath);
+		SqlHelper.getConnection();
+		String sql = "insert into Sheet values('" + mySheet.getUuid() + "','" + mySheet.getName() + "','" + mySheet.getDateCreated() + "','" + mySheet.getCreatorId() + "','" + mySheet.getPicture() + "')";
+		SqlHelper.update(sql);		
+		SqlHelper.closeConnection();
 	}
 }

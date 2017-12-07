@@ -1,5 +1,8 @@
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.UUID;
 
@@ -11,7 +14,10 @@ public class Sheet extends MusicSheet {
 	private String name;
 	private String date;
 	private String owner_id;
+	private String owner_name;
 	private String image_path;
+	private Map musicItems = new HashMap();
+	
 	
 	private static String root = System.getProperty("user.dir").toString().replace('\\', '/');
 	
@@ -22,6 +28,17 @@ public class Sheet extends MusicSheet {
 		date = hm.get("Date").toString();
 		owner_id = hm.get("OwnerId").toString();
 		image_path = root + hm.get("ImagePath").toString();
+		owner_name = "UNKNOWN";
+		SqlHelper.getConnection();
+		ArrayList ls = SqlHelper.select("select * from Music where SheetId = '" + id + "'");
+		Iterator it = ls.iterator(); 
+		while(it.hasNext()) {   
+		    Map map = (Map)it.next();
+		    if(map.get("MusicMd5") != null && map.get("Name") != null)
+		    	musicItems.put(map.get("MusicMd5").toString(), map.get("Name").toString());
+		} 	
+		SqlHelper.closeConnection();
+		
 	}
 	
 	public Sheet(){
@@ -30,6 +47,8 @@ public class Sheet extends MusicSheet {
 		id = UUID.randomUUID().toString().replaceAll(s1, s2);
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		date = formatter.format(new Date());
+		owner_id = "16020032011";
+		owner_name = "UNKNOWN";
 	}
 	
 	public String getUuid()
@@ -50,6 +69,10 @@ public class Sheet extends MusicSheet {
 	public String getCreatorId()
 	{
 		return owner_id;
+	}
+	
+	public String getCreator() {
+		return owner_name;
 	}
 	
 	public String getPicture()
@@ -80,5 +103,9 @@ public class Sheet extends MusicSheet {
 	public void setPicture(String path)
 	{
 		this.image_path = path;
+	}
+	
+	public void setMusicItems(Map musicItems) {
+		this.musicItems = musicItems;
 	}
 }
