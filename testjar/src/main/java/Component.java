@@ -1,5 +1,6 @@
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.TextField;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -44,4 +45,12 @@ public class Component {
 		button.setFont(new java.awt.Font("Microsoft YaHei", 0, fontsize));
 		return button;
 	}	
+	
+	//获取txtField
+	static public TextField getTextField(int width,int height) {
+		TextField textField = new TextField();
+		Dimension preferredSize = new Dimension(width,height);
+		textField.setPreferredSize(preferredSize);
+		return textField;
+	}
 }
