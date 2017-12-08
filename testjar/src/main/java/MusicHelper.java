@@ -3,8 +3,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -12,8 +12,6 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.io.IOUtils;
-
-import ouc.cs.course.java.musicclient.MusicOperationClient;
 
 
 public class MusicHelper {
@@ -29,7 +27,7 @@ public class MusicHelper {
 		Music myMusic = new Music(hm);
 		return myMusic;
 	}
-	
+
 	//添加歌曲到歌单
 	public static void AddMusicToSheet(String path, String uuid, String singer) {		
 		try {
@@ -97,5 +95,4 @@ public class MusicHelper {
 			client.getHttpConnectionManager().closeIdleConnections(0);
 		}
 	}
-
 }

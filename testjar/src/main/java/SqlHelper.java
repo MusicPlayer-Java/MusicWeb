@@ -13,8 +13,8 @@ public class SqlHelper {
 			Class.forName("org.sqlite.JDBC");  
 			conn = DriverManager.getConnection("jdbc:sqlite:music.db");  
 			stat = conn.createStatement();   
-	        stat.executeUpdate( "create table if not exists Sheet(SheetId VARCHAR(50) NOT NULL, Name VARCHAR(30) NOT NULL, Date DATETIME NOT NULL, OwnerId VARCHAR(15) NOT NULL, OwnerName VARCHAR(10) NOT NULL, ImagePath VARCHAR(100) NOT NULL);" );
-	        stat.executeUpdate( "create table if not exists Music(MusicId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(30) NOT NULL, Singer VARCHAR(30) NOT NULL, SheetId VARCHAR(50) NOT NULL, MusicMd5 VARCHAR(40) NOT NULL, MusicPath VARCHAR(100) NOT NULL, Time VARCHAR(10) NOT NULL);" );
+	        stat.executeUpdate( "create table if not exists Sheet(SheetId VARCHAR(50) NOT NULL, Name VARCHAR(30) NOT NULL, Date DATETIME NOT NULL, OwnerId VARCHAR(15) NOT NULL, ImagePath VARCHAR(100) NOT NULL);" );
+	        stat.executeUpdate( "create table if not exists Music(MusicId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, Name VARCHAR(30) NOT NULL, Singer VARCHAR(30) NOT NULL, SheetId INT NOT NULL, MusicMd5 VARCHAR(40) NOT NULL, MusicPath VARCHAR(100) NOT NULL, Time VARCHAR(10) NOT NULL);" );
 		}
 		catch( Exception e )
 		{
