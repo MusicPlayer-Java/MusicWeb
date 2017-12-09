@@ -110,9 +110,9 @@ public class SheetHelper {
 						int size = items[1].length();
 						int index3 = items[1].lastIndexOf('"');
 						if(items[1].indexOf('.') != -1)
-							mum.put(items[0].substring(index1, index2), items[1].substring(1, size-5));
+							mum.put(items[0].substring(index1+1, index2), items[1].substring(1, size-5));
 						else
-							mum.put(items[0].substring(index1, index2), items[1].substring(1));
+							mum.put(items[0].substring(index1+1, index2), items[1].substring(1));
 					}				
 				}					
 				ms.setMusicItems(mum);

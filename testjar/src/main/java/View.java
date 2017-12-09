@@ -2,6 +2,7 @@
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Label;
+import java.awt.List;
 import java.awt.TextField;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
@@ -67,11 +68,23 @@ public class View {
 	class MusicListen{
 		
 		int i;
-		public MusicListen(int i) {
+		boolean isMine;
+		String md5;
+		String MusicName;
+		public MusicListen(int i,boolean isMine) {
 			// TODO Auto-generated constructor stub
 			this.i = i < 0 ? musics.size()-1 : i;
 			this.i = i == musics.size() ? 0: i;
-			
+			this.isMine = isMine;
+		}
+		
+		public MusicListen(int i,int size,boolean isMine,String md5,String MusicName) {
+			// TODO Auto-generated constructor stub
+			this.i = i < 0 ? size -1 : i;
+			this.i = i == size ? 0: i;
+			this.isMine = isMine;
+			this.md5 = md5;
+			this.MusicName = MusicName;
 		}
 		
 		MouseListener mouseListener = new MouseListener() {
@@ -101,9 +114,18 @@ public class View {
 				if (isPlay) {
 					mp3.stop();
 				}
+				
 				Thread t1 = new Thread() {public void run() {
 						try {
-							mp3 = new MP3Player(musics.get(i).getPath());
+							if (isMine) {
+								mp3 = new MP3Player(musics.get(i).getPath());
+								playingMusic.setText("正在播放: "+musics.get(i).getName());
+							}
+							else {
+								mp3 = new MP3Player(MusicHelper.downloadMusic(md5));
+								playingMusic.setText("正在下载/播放: "+ MusicName);
+							}
+							
 						} catch (FileNotFoundException e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -111,7 +133,7 @@ public class View {
 						
 						isPlay = true;
 						playingIndex = i;
-						playingMusic.setText("正在播放: "+musics.get(i).getName());
+						
 						
 						jPanel3.remove(btnNext);
 						jPanel3.remove(btnStop);
@@ -123,8 +145,8 @@ public class View {
 						btnLast =Component.getLable(100, 60, 18, "上一首");
 						btnNext =Component.getLable(100, 60, 18, "下一首");
 						
-						btnLast.addMouseListener(new MusicListen(playingIndex==0?musics.size():playingIndex-1).mouseListener);
-						btnNext.addMouseListener(new MusicListen(playingIndex == musics.size() ? 0:playingIndex+1).mouseListener);
+						btnLast.addMouseListener(new MusicListen(playingIndex==0?musics.size():playingIndex-1,true).mouseListener);
+						btnNext.addMouseListener(new MusicListen(playingIndex == musics.size() ? 0:playingIndex+1,true).mouseListener);
 						
 						jPanel3.add(btnLast);
 						jPanel3.add(btnStop);
@@ -150,6 +172,8 @@ public class View {
 				
 			}
 		};
+		
+		
 	}
 	
 	
@@ -183,8 +207,8 @@ public class View {
 		playingMusic = Component.getLable(750, 60, 18, "正在播放: "+musics.get(playingIndex).getName());
 		
 		
-		btnLast.addMouseListener(new MusicListen(playingIndex==0?musics.size():playingIndex-1).mouseListener);
-		btnNext.addMouseListener(new MusicListen(playingIndex == musics.size() ? 0:playingIndex+1).mouseListener);
+		btnLast.addMouseListener(new MusicListen(playingIndex==0?musics.size():playingIndex-1,true).mouseListener);
+		btnNext.addMouseListener(new MusicListen(playingIndex == musics.size() ? 0:playingIndex+1,true).mouseListener);
 		
 		btnStop.addMouseListener(new MouseListener() {
 			
@@ -236,7 +260,7 @@ public class View {
 		cover =Component.getLable(270, 270);
 		//cover.setIcon(new ImageIcon(sheet.getImagePath()));
 		sheet = SheetHelper.getSheet("cd7e8ee8 038d 4c6e ae26 248704c59d67");
-		cover.setIcon(new ImageIcon("D:\\Course\\java\\workplace\\CloudMusic\\images\\279759ee3d6d55fb8c19b66f6f224f4a21a4dd98.jpg"));
+		cover.setIcon(new ImageIcon(sheet.getPicture()));
 		blank = Component.getLable(80, 270);
 		
 		intro = Component.getLable(500, 200,25,"<html><body><span style='color:red;'>"+sheet.getName()+"</span><br><br><br><span style='color:red;'>"+sheet.getCreatorId()+"</span>于<span style='color:red;'>"+sheet.getDateCreated()+"</span>创建"+"<body></html>");
@@ -290,8 +314,8 @@ public class View {
 		        JPanel blankmusic3 = Component.getPanel(500, 50);
 		        JLabel lbName = Component.getLable(150, 50, 20, "歌手:");
 		        final TextField txtSinger = Component.getTextField(300, 40);
-		        JLabel lbUp = Component.getLable(150, 50, 20, "设置封面:");
-		        JLabel lbMusic = Component.getLable(300, 50, 20, "上传图片");
+		        JLabel lbUp = Component.getLable(150, 50, 20, "添加歌曲:");
+		        JLabel lbMusic = Component.getLable(300, 50, 20, "上传歌曲");
 		        lbMusic.addMouseListener(new MouseListener() {
 					
 					public void mouseReleased(MouseEvent e) {
@@ -319,7 +343,7 @@ public class View {
 						musicpath =  FileHelper.openMusicChooser();
 					}
 				});
-		        JLabel lbSub = Component.getLable(450, 50, 20, "                                 创建歌单");
+		        JLabel lbSub = Component.getLable(450, 50, 20, "                                 添加歌曲");
 		        lbSub.addMouseListener(new MouseListener() {
 					
 					public void mouseReleased(MouseEvent e) {
@@ -364,7 +388,7 @@ public class View {
 							list.add(name);
 							JLabel name1 = Component.getLable(80, 40, 16,"播放");
 							name1.setBackground(java.awt.Color.WHITE);
-							name1.addMouseListener(new MusicListen(i).mouseListener);
+							name1.addMouseListener(new MusicListen(i,true).mouseListener);
 							list.add(name1);
 							name = Component.getLable(80, 40, 16,"下载");
 							name.setBackground(java.awt.Color.gray);
@@ -467,7 +491,7 @@ public class View {
 			list.add(name);
 			JLabel name1 = Component.getLable(80, 40, 16,"播放");
 			name1.setBackground(java.awt.Color.WHITE);
-			name1.addMouseListener(new MusicListen(i).mouseListener);
+			name1.addMouseListener(new MusicListen(i,true).mouseListener);
 
 			list.add(name1);
 			name = Component.getLable(80, 40, 16,"下载");
@@ -705,6 +729,7 @@ public class View {
 							musics = SheetHelper.getAllSongs(sheet.getUuid().toString());
 							
 							intro.setText("<html><body><span style='color:red;'>   "+sheet.getName()+"</span><br><br><br><span style='color:red;'>   "+sheet.getCreatorId()+"</span>于<span style='color:red;'>"+sheet.getDateCreated()+"</span>创建"+"<body></html>");
+							cover.setIcon(new ImageIcon(sheet.getPicture()));
 							jPanel2.remove(list);
 							list = null;
 							list = Component.getPanel(918, 450);
@@ -722,7 +747,7 @@ public class View {
 								list.add(name);
 								JLabel name1 = Component.getLable(80, 40, 16,"播放");
 								name1.setBackground(java.awt.Color.WHITE);
-								name1.addMouseListener(new MusicListen(i).mouseListener);
+								name1.addMouseListener(new MusicListen(i,true).mouseListener);
 								list.add(name1);
 								name = Component.getLable(80, 40, 16,"下载");
 								name.setBackground(java.awt.Color.gray);
@@ -795,8 +820,11 @@ public class View {
 						map.values().toArray(msList);
 						for(int j =0; j < msList.length; j++)
 							System.out.println(msList[j]);
+						String[] md5List = new String[map.size()];
+						map.keySet().toArray(md5List);
 						
 						intro.setText("<html><body><span style='color:red;'>   "+sheet.getName()+"</span><br><br><br><span style='color:red;'>   "+sheet.getCreatorId()+"</span>于<span style='color:red;'>"+sheet.getDateCreated()+"</span>创建"+"<body></html>");
+						cover.setIcon(new ImageIcon(sheet.getPicture()));
 						jPanel2.remove(list);
 						list = null;
 						list = Component.getPanel(918, 450);
@@ -812,36 +840,11 @@ public class View {
 							//name = Component.getLable(150, 40, 16, music.getSinger());
 							//name.setBackground(java.awt.Color.gray);
 							//list.add(name);
-							JLabel name1 = Component.getLable(80, 40, 16,"播放");
+							JLabel name1 = Component.getLable(200, 40, 16,"播放");
 							name1.setBackground(java.awt.Color.WHITE);
-							name1.addMouseListener(new MouseListener() {
-								
-								public void mouseReleased(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								
-								public void mousePressed(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								
-								public void mouseExited(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								
-								public void mouseEntered(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-								
-								public void mouseClicked(MouseEvent e) {
-									// TODO Auto-generated method stub
-									
-								}
-							});
 							
+							name1.addMouseListener(new MusicListen(i,msList.length, false, md5List[i],msList[i]).mouseListener);
+							list.add(name1);
 							//name = Component.getLable(80, 40, 16,"下载");
 							//name.setBackground(java.awt.Color.gray);
 							//list.add(name);
