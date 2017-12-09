@@ -724,6 +724,8 @@ public class View {
 						Map map =(Map) xSheet.getMusicItems();
 						String[] msList = new String[map.size()];
 						map.values().toArray(msList);
+						for(int j =0; j < msList.length; j++)
+							System.out.println(msList[j]);
 						
 						intro.setText("<html><body><span style='color:red;'>   "+sheet.getName()+"</span><br><br><br><span style='color:red;'>   "+sheet.getCreatorId()+"</span>于<span style='color:red;'>"+sheet.getDateCreated()+"</span>创建"+"<body></html>");
 						jPanel2.remove(list);
