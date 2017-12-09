@@ -34,12 +34,14 @@ public class View {
 	private boolean isPlay = false; 	//判断播放状态
 	private int playingIndex;	//播放器播放歌曲
 	private boolean isMy = true;
+	private int now_page_other;
 	
 	private ArrayList mySheet = null;	
 	private ArrayList othersSheet =   null;
 	private static JPanel jPanel1 = null;
 	private JPanel jPanel11  = null;
 	private JLabel jLableOtherTitle = null;
+	private JPanel jPanelOtherList = null;
 	private JPanel jPanel12 = null;
 	private JLabel jLableMyTitle = null;
 	private JLabel jLableMylist = null;
@@ -71,6 +73,9 @@ public class View {
 		boolean isMine;
 		String md5;
 		String MusicName;
+		int size;
+		int last;
+		int next;
 		public MusicListen(int i,boolean isMine) {
 			// TODO Auto-generated constructor stub
 			this.i = i < 0 ? musics.size()-1 : i;
@@ -85,6 +90,7 @@ public class View {
 			this.isMine = isMine;
 			this.md5 = md5;
 			this.MusicName = MusicName;
+			this.size = size;
 		}
 		
 		MouseListener mouseListener = new MouseListener() {
@@ -122,8 +128,13 @@ public class View {
 								playingMusic.setText("正在播放: "+musics.get(i).getName());
 							}
 							else {
-								mp3 = new MP3Player(MusicHelper.downloadMusic(md5));
-								playingMusic.setText("正在下载/播放: "+ MusicName);
+								playingMusic.setText("正在下载: "+ MusicName);
+								jFrame.validate(); 
+								jFrame.repaint();
+								String path = MusicHelper.downloadMusic(md5);
+								System.out.println(path);
+								mp3 = new MP3Player(path);
+								
 							}
 							
 						} catch (FileNotFoundException e1) {
@@ -145,8 +156,22 @@ public class View {
 						btnLast =Component.getLable(100, 60, 18, "上一首");
 						btnNext =Component.getLable(100, 60, 18, "下一首");
 						
-						btnLast.addMouseListener(new MusicListen(playingIndex==0?musics.size():playingIndex-1,true).mouseListener);
-						btnNext.addMouseListener(new MusicListen(playingIndex == musics.size() ? 0:playingIndex+1,true).mouseListener);
+						
+						if (isMine) {
+							last = playingIndex==0?musics.size():playingIndex-1;
+							next = playingIndex == musics.size() ? 0:playingIndex+1;
+							btnLast.addMouseListener(new MusicListen(last,true).mouseListener);
+							btnNext.addMouseListener(new MusicListen(next,true).mouseListener);
+						}
+						else {
+							last = playingIndex==0?size:playingIndex-1;
+							next = playingIndex == size ? 0:playingIndex+1;
+							playingMusic.setText("正在播放: "+ MusicName);
+							btnLast.addMouseListener(new MusicListen(last,size,false,md5,name).mouseListener);
+							btnNext.addMouseListener(new MusicListen(last,size,false,md5,name).mouseListener);
+						}
+						
+						
 						
 						jPanel3.add(btnLast);
 						jPanel3.add(btnStop);
@@ -374,7 +399,9 @@ public class View {
 						jPanel2.remove(list);
 						list = null;
 						list = Component.getPanel(918, 450);
-						jPanel2.add(list);
+						
+						musics = SheetHelper.getAllSongs(sheet.getUuid());
+						
 						for (int i = 0; i < musics.size(); i++) {
 							final Music music = (Music) musics.get(i);
 							JLabel name = Component.getLable(399, 40, 16, music.getName() );
@@ -394,9 +421,13 @@ public class View {
 							name.setBackground(java.awt.Color.gray);
 							list.add(name);
 						}
+						jPanel2.add(list);
+						
 						addMusic.dispose();
 						jFrame.validate();
 						jFrame.repaint();
+						//jFrame.setVisible(false);
+						//jFrame.setVisible(true);
 					}
 				});
 		        addMusic.add(blankmusic1);
@@ -518,7 +549,9 @@ public class View {
 		jPanel11.add(jLableOtherTitle);
 		//jPanel11.setBackground(java.awt.Color.gray);
 		System.out.println(othersSheet.size());
-		initOtherSheetlist();
+		
+		initOtherSheetlist(0);
+		
 		jPanel1.add(jPanel12);
 		JLabel jLabelAdd = Component.getLable(280, 40, 18, "创建歌单");
 		jPanel12.add(jLabelAdd);
@@ -729,7 +762,8 @@ public class View {
 							musics = SheetHelper.getAllSongs(sheet.getUuid().toString());
 							
 							intro.setText("<html><body><span style='color:red;'>   "+sheet.getName()+"</span><br><br><br><span style='color:red;'>   "+sheet.getCreatorId()+"</span>于<span style='color:red;'>"+sheet.getDateCreated()+"</span>创建"+"<body></html>");
-							cover.setIcon(new ImageIcon(sheet.getPicture()));
+							System.out.println( sheet.getPicture());
+							cover.setIcon(new ImageIcon( sheet.getPicture()));
 							jPanel2.remove(list);
 							list = null;
 							list = Component.getPanel(918, 450);
@@ -763,7 +797,9 @@ public class View {
 		}
 	}
 	
-	private void initOtherSheetlist() {
+	private void initOtherSheetlist(int page) {
+		
+		
 		
 		if (!isMy) {
 			jPanel2.remove(upMusic);
@@ -773,8 +809,11 @@ public class View {
 		
 		playingIndex = 0;
 		
+		if ((page-1)*4> othersSheet.size())
+			page = 0;
+		
 		if (othersSheet.size() > 0) {
-			for (int i = 0; i < (othersSheet.size()>4?othersSheet.size():4); i++) {
+			for (int i = 0 + (page-1)*4 ; i < (othersSheet.size()< page * 4 ? othersSheet.size() : 4); i++) {
 				final MusicSheet xSheet = (MusicSheet) othersSheet.get(i);
 				JLabel other = Component.getLable(240, 50, 16, xSheet.getName());
 				jPanel11.add(other);
