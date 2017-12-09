@@ -43,16 +43,10 @@ public class SheetHelper {
 		SqlHelper.getConnection();
 		String sql = "select * from Sheet where SheetId = '" + id + "';";
 		List ls = SqlHelper.select(sql);
-		System.out.println(ls.size());
 		SqlHelper.closeConnection();
-		if(ls.size() > 0) {
-			Map hm = (Map)ls.get(0);
-			Sheet mySheet = new Sheet(hm);
-			return mySheet;
-		}
-		else {
-			return null;
-		}
+		Map hm = (Map)ls.get(0);
+		Sheet mySheet = new Sheet(hm);
+		return mySheet;
 	}
 	
 	// 根据歌单ID获取歌单中全部歌曲信息
@@ -86,9 +80,9 @@ public class SheetHelper {
 		JSONArray jsonMusicSheetList = (JSONArray) jsonBody.get("musicSheetList");
 		JSONObject jms = null;
 		List mss = new ArrayList();
-		MusicSheet ms = null;
-		Map mum = new HashMap();
+		MusicSheet ms = null;		
 		for (int i = 0; i < jsonMusicSheetList.length(); i++) {
+			Map mum = new HashMap();
 			Object musicSheetObj = jsonMusicSheetList.get(i);
 			jms = new JSONObject(musicSheetObj.toString());
 			ms = new MusicSheet();
@@ -105,23 +99,25 @@ public class SheetHelper {
 			else
 				ms.setPicture(jms.get("picture").toString());
 			String mi = jms.get("musicItems").toString();
-			mi = mi.substring(0, mi.length()-1);
-			String[] musics = mi.split(",");
-			for(int j = 0; j < musics.length; j++){
-				String[] items = musics[j].split(":");	
-				if(items.length > 1) {
-					int index1 = items[0].indexOf('"');
-					int index2 = items[0].lastIndexOf('"');
-					int size = items[1].length();
-					int index3 = items[1].lastIndexOf('"');
-					if(items[1].indexOf('.') != -1)
-						mum.put(items[0].substring(index1, index2), items[1].substring(1, size-5));
-					else
-						mum.put(items[0].substring(index1, index2), items[1].substring(1));
-				}				
-			}					
-			ms.setMusicItems(mum);
-			mss.add(ms);
+			if(mi.length() != 0) {
+				mi = mi.substring(0, mi.length()-1);
+				String[] musics = mi.split(",");
+				for(int j = 0; j < musics.length; j++){
+					String[] items = musics[j].split(":");	
+					if(items.length > 1) {
+						int index1 = items[0].indexOf('"');
+						int index2 = items[0].lastIndexOf('"');
+						int size = items[1].length();
+						int index3 = items[1].lastIndexOf('"');
+						if(items[1].indexOf('.') != -1)
+							mum.put(items[0].substring(index1, index2), items[1].substring(1, size-5));
+						else
+							mum.put(items[0].substring(index1, index2), items[1].substring(1));
+					}				
+				}					
+				ms.setMusicItems(mum);
+				mss.add(ms);
+			}			
 		}
 		method.releaseConnection();
 		return mss;
@@ -134,29 +130,6 @@ public class SheetHelper {
 		moc.downloadMusicSheetPicture(md5, "./images");
 		String path = System.getProperty("user.dir").toString().replace('\\', '/') + "/images/" + pictureName;
 		return path;
-	}
-	
-	// 上传歌单
-	public static void uploadSheet(MusicSheet sheet)
-	{
-		MusicOperationClient moc = new MusicOperationClient();
-		List filePaths = new ArrayList();
-		SqlHelper.getConnection();
-		ArrayList musics = SqlHelper.select("select MusicPath from Music where SheetId = '" + sheet.getUuid() + "'");
-		SqlHelper.closeConnection();
-		Iterator it = musics.iterator();   
-		while(it.hasNext()) {   
-		    Map hm = (Map)it.next();
-		    String path = System.getProperty("user.dir").toString().replace('\\', '/') + hm.get("MusicPath").toString();
-		    System.out.println(path);
-		    filePaths.add(path);
-		} 		
-		MusicSheet ms = new MusicSheet();
-		ms.setCreatorId(sheet.getCreatorId());
-		ms.setPicture(sheet.getPicture());
-		ms.setCreator(sheet.getCreator());
-		ms.setName(sheet.getName());
-		moc.createMusicSheetAndUploadFiles(ms, filePaths);
 	}
 	
 	// 创建歌单
