@@ -824,7 +824,7 @@ public class View {
 						map.keySet().toArray(md5List);
 						
 						intro.setText("<html><body><span style='color:red;'>   "+sheet.getName()+"</span><br><br><br><span style='color:red;'>   "+sheet.getCreatorId()+"</span>于<span style='color:red;'>"+sheet.getDateCreated()+"</span>创建"+"<body></html>");
-						cover.setIcon(new ImageIcon(sheet.getPicture()));
+						cover.setIcon(new ImageIcon(SheetHelper.getPicture(sheet.getUuid(), sheet.getPicture())));
 						jPanel2.remove(list);
 						list = null;
 						list = Component.getPanel(918, 450);
