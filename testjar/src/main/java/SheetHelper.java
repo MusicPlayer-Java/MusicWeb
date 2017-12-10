@@ -43,10 +43,15 @@ public class SheetHelper {
 		SqlHelper.getConnection();
 		String sql = "select * from Sheet where SheetId = '" + id + "';";
 		List ls = SqlHelper.select(sql);
-		SqlHelper.closeConnection();
-		Map hm = (Map)ls.get(0);
-		Sheet mySheet = new Sheet(hm);
-		return mySheet;
+		if(ls.size() != 0) {
+			SqlHelper.closeConnection();
+			Map hm = (Map)ls.get(0);
+			Sheet mySheet = new Sheet(hm);
+			return mySheet;
+		}
+		else
+			return null;
+		
 	}
 	
 	// 根据歌单ID获取歌单中全部歌曲信息
@@ -110,9 +115,9 @@ public class SheetHelper {
 						int size = items[1].length();
 						int index3 = items[1].lastIndexOf('"');
 						if(items[1].indexOf('.') != -1)
-							mum.put(items[0].substring(index1, index2), items[1].substring(1, size-5));
+							mum.put(items[0].substring(index1 + 1, index2), items[1].substring(1, size-5));
 						else
-							mum.put(items[0].substring(index1, index2), items[1].substring(1));
+							mum.put(items[0].substring(index1 + 1, index2), items[1].substring(1));
 					}				
 				}					
 				ms.setMusicItems(mum);
