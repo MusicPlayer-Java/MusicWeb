@@ -70,7 +70,7 @@ public class View {
 	
 	private String name, creater, id,path,time;
 	private String musicpath;
-	class MusicListen{
+	class MouseListen{
 		
 		int i;
 		boolean isMine;
@@ -79,14 +79,21 @@ public class View {
 		int size;
 		int last;
 		int next;
-		public MusicListen(int i,boolean isMine) {
+		int page;
+		
+		
+		public MouseListen(int page) {
+			this.page = page;
+		}
+		
+		public MouseListen(int i,boolean isMine) {
 			// TODO Auto-generated constructor stub
 			this.i = i < 0 ? musics.size()-1 : i;
 			this.i = i == musics.size() ? 0: i;
 			this.isMine = isMine;
 		}
 		
-		public MusicListen(int i,int size,boolean isMine,String md5,String MusicName) {
+		public MouseListen(int i,int size,boolean isMine,String md5,String MusicName) {
 			// TODO Auto-generated constructor stub
 			this.i = i < 0 ? size -1 : i;
 			this.i = i == size ? 0: i;
@@ -96,7 +103,49 @@ public class View {
 			this.size = size;
 		}
 		
-		MouseListener mouseListener = new MouseListener() {
+		MouseListener changeListener= new MouseListener() {
+			
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				jPanel11.remove(jPanelOtherList);
+				jPanel11.remove(beforeChange);
+				jPanel11.remove(change);
+				jPanelOtherList = null;
+				jPanelOtherList =Component.getPanel(280, 200);
+				
+				initOtherSheetlist(++now_page_other);
+				change.addMouseListener(new MouseListen(now_page_other).changeListener);
+				
+				jPanel11.add(jPanelOtherList);
+				jPanel11.add(beforeChange);
+				jPanel11.add(change);
+				
+				jFrame.validate();
+				jFrame.repaint();
+			}
+		};
+		
+		MouseListener musicListener = new MouseListener() {
 			
 			public void mouseReleased(MouseEvent e) {
 				// TODO Auto-generated method stub
@@ -163,15 +212,15 @@ public class View {
 						if (isMine) {
 							last = playingIndex==0?musics.size():playingIndex-1;
 							next = playingIndex == musics.size() ? 0:playingIndex+1;
-							btnLast.addMouseListener(new MusicListen(last,true).mouseListener);
-							btnNext.addMouseListener(new MusicListen(next,true).mouseListener);
+							btnLast.addMouseListener(new MouseListen(last,true).musicListener);
+							btnNext.addMouseListener(new MouseListen(next,true).musicListener);
 						}
 						else {
 							last = playingIndex==0?size:playingIndex-1;
 							next = playingIndex == size ? 0:playingIndex+1;
 							playingMusic.setText("正在播放: "+ MusicName);
-							btnLast.addMouseListener(new MusicListen(last,size,false,md5,name).mouseListener);
-							btnNext.addMouseListener(new MusicListen(last,size,false,md5,name).mouseListener);
+							btnLast.addMouseListener(new MouseListen(last,size,false,md5,name).musicListener);
+							btnNext.addMouseListener(new MouseListen(last,size,false,md5,name).musicListener);
 						}
 						
 						
@@ -204,14 +253,7 @@ public class View {
 		
 	}
 	
-	
-	class ChangeListener{
-		
-		int page;
-		
-		public ChangeListener(int page) {
-			this.page = page;
-		}
+
 		
 		MouseListener changgelistener = new MouseListener() {
 			
@@ -237,24 +279,10 @@ public class View {
 			
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
-				jPanel11.remove(jPanelOtherList);
-				jPanel11.remove(beforeChange);
-				jPanel11.remove(change);
-				jPanelOtherList = null;
-				jPanelOtherList =Component.getPanel(280, 200);
 				
-				initOtherSheetlist(++now_page_other);
-				change.addMouseListener(new ChangeListener(now_page_other).changgelistener);
-				
-				jPanel11.add(jPanelOtherList);
-				jPanel11.add(beforeChange);
-				jPanel11.add(change);
-				
-				jFrame.validate();
-				jFrame.repaint();
 			}
 		};
-	}
+	
 	public View() throws HttpException, IOException {
 		
 		initMusicList();
@@ -275,8 +303,8 @@ public class View {
 		playingMusic = Component.getLable(750, 60, 18, "正在播放: "+musics.get(playingIndex).getName());
 		
 		
-		btnLast.addMouseListener(new MusicListen(playingIndex==0?musics.size():playingIndex-1,true).mouseListener);
-		btnNext.addMouseListener(new MusicListen(playingIndex == musics.size() ? 0:playingIndex+1,true).mouseListener);
+		btnLast.addMouseListener(new MouseListen(playingIndex==0?musics.size():playingIndex-1,true).musicListener);
+		btnNext.addMouseListener(new MouseListen(playingIndex == musics.size() ? 0:playingIndex+1,true).musicListener);
 		
 		btnStop.addMouseListener(new MouseListener() {
 			
@@ -460,7 +488,7 @@ public class View {
 							//list.add(name);
 							JLabel name1 = Component.getLable(100, 40, 16,"播放");
 							name1.setBackground(java.awt.Color.WHITE);
-							name1.addMouseListener(new MusicListen(i,true).mouseListener);
+							name1.addMouseListener(new MouseListen(i,true).musicListener);
 							list.add(name1);
 							//name = Component.getLable(80, 40, 16,"下载");
 							//name.setBackground(java.awt.Color.gray);
@@ -578,7 +606,7 @@ public class View {
 			//list.add(name);
 			JLabel name1 = Component.getLable(100, 40, 16,"播放");
 			name1.setBackground(java.awt.Color.WHITE);
-			name1.addMouseListener(new MusicListen(i,true).mouseListener);
+			name1.addMouseListener(new MouseListen(i,true).musicListener);
 			list.add(name1);
 			//name = Component.getLable(80, 40, 16,"下载");
 			//name.setBackground(java.awt.Color.gray);
@@ -611,7 +639,7 @@ public class View {
 		jPanelOtherList = Component.getPanel(280, 200);
 		beforeChange =  Component.getLable(80, 50);
 		change = Component.getLable(100, 50, 18, "换一换");
-		change.addMouseListener(new ChangeListener(now_page_other+1).changgelistener);
+		change.addMouseListener(new MouseListen(now_page_other+1).musicListener);
 		
 		jPanel1.add(jPanel11);
 		jPanel11.add(jLableOtherTitle);
@@ -859,7 +887,7 @@ public class View {
 								//list.add(name);
 								JLabel name1 = Component.getLable(100, 40, 16,"播放");
 								name1.setBackground(java.awt.Color.WHITE);
-								name1.addMouseListener(new MusicListen(i,true).mouseListener);
+								name1.addMouseListener(new MouseListen(i,true).musicListener);
 								list.add(name1);
 								//name = Component.getLable(80, 40, 16,"下载");
 								//name.setBackground(java.awt.Color.gray);
@@ -967,7 +995,7 @@ public class View {
 							list.add(name);
 							JLabel name1 = Component.getLable(100, 40, 16,"播放");
 							name1.setBackground(java.awt.Color.WHITE);
-							name1.addMouseListener(new MusicListen(i,msList.length, false, md5List[i],msList[i]).mouseListener);
+							name1.addMouseListener(new MouseListen(i,msList.length, false, md5List[i],msList[i]).musicListener);
 							list.add(name1);
 							if (i%2==0) {
 								JLabel name2 = Component.getLable(40, 40);
