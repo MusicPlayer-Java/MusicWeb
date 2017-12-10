@@ -128,6 +128,29 @@ public class SheetHelper {
 		return mss;
 	}
 	
+	// 上传歌单
+	public static void uploadSheet(MusicSheet sheet)
+	{
+		MusicOperationClient moc = new MusicOperationClient();
+		List filePaths = new ArrayList();
+		SqlHelper.getConnection();
+		ArrayList musics = SqlHelper.select("select MusicPath from Music where SheetId = '" + sheet.getUuid() + "'");
+		SqlHelper.closeConnection();
+		Iterator it = musics.iterator();   
+		while(it.hasNext()) {   
+		    Map hm = (Map)it.next();
+		    String path = System.getProperty("user.dir").toString().replace('\\', '/') + hm.get("MusicPath").toString();
+		    System.out.println(path);
+		    filePaths.add(path);
+		} 		
+		MusicSheet ms = new MusicSheet();
+		ms.setCreatorId(sheet.getCreatorId());
+		ms.setPicture(sheet.getPicture());
+		ms.setCreator(sheet.getCreator());
+		ms.setName(sheet.getName());
+		moc.createMusicSheetAndUploadFiles(ms, filePaths);
+	}
+	
 	// 根据MD5值下载对应的歌单封面图片并返回路径
 	public static String getPicture(String md5, String pictureName)
 	{
@@ -151,6 +174,17 @@ public class SheetHelper {
 		SqlHelper.getConnection();
 		String sql = "insert into Sheet values('" + mySheet.getUuid() + "','" + mySheet.getName() + "','" + mySheet.getDateCreated() + "','" + creatorId + "','" + creator + "','" + mySheet.getPicture() + "')";
 		SqlHelper.update(sql);		
+		SqlHelper.closeConnection();
+	}
+	
+	// 删除歌单
+	public static void deleteSheet(String uuid) 
+	{
+		SqlHelper.getConnection();
+		String sql = "delete from Sheet where SheetId = '" + uuid + "'";
+		SqlHelper.update(sql);
+		sql = "delete from Music where SheetId = '" + uuid + "'";
+		SqlHelper.update(sql);
 		SqlHelper.closeConnection();
 	}
 }

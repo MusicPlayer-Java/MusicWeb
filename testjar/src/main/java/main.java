@@ -30,6 +30,8 @@ public class main {
 		
 		view.init();
 		
+		SheetHelper.deleteSheet("f4d920b2e0f24a29bc637d2be5655ee9");
+		System.out.println("ok");
 		
 		}
 
