@@ -212,8 +212,14 @@
 }
 .sub-commit{
     display: block;
-    width: 50px;
+    float: left;
+    width: 75px;
+    height: 35px;
     background-color: #00adb5;
     color: white;
     font-size: 18px;
+    line-height: 35px;
+    margin-left: -75px;
+    margin-top: 196px;
+    text-align: center;
 }
