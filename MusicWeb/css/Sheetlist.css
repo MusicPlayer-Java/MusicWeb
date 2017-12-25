@@ -1,0 +1,219 @@
+.cover{
+    height: 400px;
+    width: auto;
+    display: inline-block;
+}
+.intro{
+    float: left;
+    width: 980px;
+}
+.intro h4{
+    font-size: 24px;
+    color: #222831;
+    font-weight: lighter;
+    margin: 30px 0;
+    width: 800px;
+    /*display:inline-block;*/
+    word-wrap: break-word;
+}
+.intro a{
+    margin-top: 30px;
+    display: inline-block;
+    min-width: 122px;
+    width: 50px;
+    line-height: 50px;
+    background-color: #00adb5;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+}
+.sheet-name{
+    font-size: 38px;
+    line-height: 50px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 70%;
+    margin-right: 10px;
+}
+.title{
+    padding-left: 75px;
+}
+.title li{
+
+    font-size: 24px;
+    color: #222831;
+    font-weight: lighter;
+    margin: 30px 0;
+    /*width: 800px;*/
+     display: inline-block;
+    word-wrap: break-word;
+
+}
+.list{
+    font-size: 24px;
+    color: #222831;
+    font-weight: lighter;
+    margin: 30px 0;
+    /*width: 800px;*/
+    display: inline-block;
+    word-wrap: break-word;
+
+}
+.count{
+    display: inline-block;
+    width: 60px;
+}
+.music-name{
+    display: inline-block;
+    width: 450px;
+}
+.time-length{
+    display: inline-block;
+    width: 120px;
+}
+.singer{
+    display: inline-block;
+    width: 200px;
+}
+.mysheet-list{
+    float: left;
+    width: 980px;
+}
+.other-list{
+    float: left;
+    width: 493px;
+    font-size: 24px;
+    color: #222831;
+    font-weight: 400;
+    margin: 30px 0;
+    display: inline-block;
+    word-wrap: break-word;
+}
+.other-sheet{
+    height: 150px;
+    width: auto;
+    display: inline-block;
+    margin-top: 25px;
+    margin-right: 20px;
+}
+.sheetlist{
+
+}
+.list-title image{
+
+}
+.list-title div{
+    display: inline-block;
+    margin-left: 22px;
+}
+.list-title h3{
+    font-size: 20px;
+    font-family: "Microsoft YaHei";
+    color: rgb(34, 40, 49);
+    line-height: 2;
+    font-weight: lighter;
+}
+.SheetlistOfMy{
+    margin-top: 60px;
+    height: 572px;
+    width: inherit;
+    overflow: hidden;
+}
+.sheetcover{
+    /*height: 586px;*/
+    float: left;
+}
+.sheetcover{
+    width: 430px;
+
+}
+.commit{
+    position: relative;
+    margin-top: 20px;
+}
+.commit-cover{
+    width: 100px;
+    height: 100px;
+    margin-top: 25px;
+    float: left;
+}
+.commit-text{
+    width: 1206px;
+    margin-left: 47px;
+    height: 160px;
+    float: left;
+    resize: none;
+    z-index: 7;
+    font-size: 26px;
+}
+.commit-arc{
+    position: absolute;
+    float: left;
+    z-index: 5;
+    color: white;
+    top: 24px;
+    left: 125px;
+    font-size: 80px;
+}
+.commit-arc-under{
+    font-size: 75px;
+    color: rgb(169,169,169);
+    z-index: 3;
+    top: 28px;
+    left: 124px;
+}
+.commit-list-item{
+    margin-top: 30px;
+}
+.commit-list-item image{
+    width: 50px;
+    height: 50px;
+    margin-left: 20px;
+    float: left;
+}
+.commit-list-item div{
+    /*position: relative;*/
+    /*width: 100px;*/
+    float: left;
+    margin-left: 46px;
+    width: 1200px;
+}
+.commit-list-item p{
+    float: left;
+
+}
+.commit-cpver{
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+.commit-name{
+    color: #00adb5;
+    font-size: 18px;
+    line-height: 28px;
+}
+.commit-content{
+    font-size: 18px;
+    line-height: 28px;
+}
+.commit-time{
+    /*margin-left: 20px;*/
+    font-size: 18px;
+    color: #999999;
+
+}
+.replpy{
+    font-size: 18px;
+    margin-left: 1030px;
+    color: #999999;
+}
+.sub-commit{
+    display: block;
+    width: 50px;
+    background-color: #00adb5;
+    color: white;
+    font-size: 18px;
+}

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sheet-List</title>
+    <link rel="stylesheet" type="text/css" href="css/nav&footer.css">
+    <link rel="stylesheet" type="text/css" href="css/Sheetlist.css">
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<main class="main">
+    <!--注册-->
+    <div class="login" style="display: none">
+        <div>
+            <h3>注册</h3>
+        </div>
+        <input class="box" type="text" placeholder="请输入账号">
+        <input class="box box-register" type="password" placeholder="请输入密码">
+        <input class="box box-register" type="password" placeholder="请确认密码">
+        <input class="box box-register" type="submit">
+    </div>
+    <!--登陆-->
+    <div class="login" style="display: none">
+        <div>
+            <h3>登陆</h3>
+        </div>
+        <input class="box" type="text" placeholder="请输入账号">
+        <input class="box" type="password" placeholder="请输入密码">
+        <input class="box" type="submit">
+    </div>
+    <!--添加歌单-->
+    <div class="login" style="display: none">
+        <div>
+            <h3>添加歌单</h3>
+        </div>
+        <input class="box" type="text" placeholder="请输入账号">
+        <a class="box" style="position: relative;line-height: 60px;"><input style="opacity: 0;position: absolute;width: inherit;    left: 0;height: inherit" type="file">上传文件</a>
+
+        <input class="box" type="submit">
+    </div>
+    <!--阴影-->
+
+    <div class="hover" style="display: none"></div>
+    <nav class="nav">
+        <div class="nav-main main-center">
+            <div class="nav-logo left">
+                <img class="nav-logo-img" src="images/musical-note.png">
+            </div>
+            <a class="nav-name left">优乐</a>
+            <div class="nav-classification left">
+                <a href="#" class="nav-classification-item left">首页</a>
+                <a href="#" class="nav-classification-item left">优乐榜</a>
+                <a href="#" class="nav-classification-item left">MV</a>
+                <a href="#" class="nav-classification-item left">歌手</a>
+                <a href="#" class="nav-classification-item left">音乐商城</a>
+                <a href="#" class="nav-classification-item left">广场</a>
+            </div>
+            <div class="nav-search-box left">
+                <input type="text" class="nav-search">
+            </div>
+            <img class="nav-login-logo" src="images/login.png">
+            <a id="register"><img id="login" class="nav-login" src="images/register.png"></a>
+            <img class="nav-login" src="images/line.png">
+            <a id="login-person"><img class="nav-login" src="images/login-font.png"></a>
+        </div>
+    </nav>
+    <div class="main-center clearfix" style="margin:100px auto;">
+        <img style="margin-right: 75px;float:left" class="cover" src="images/interfase.png">
+        <div class="intro">
+            <h1 class="sheet-name">歌单名字</h1>
+            <h4>创建者: 666</h4>
+            <h4>歌单描述: </h4>
+            <h4>。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。。</h4>
+            <a>播放全部</a>
+            <a style="margin-left: 60px">删除歌单</a>
+
+        </div>
+
+    </div>
+    <div class="main-center clearfix">
+        <div class="mysheet-list">
+            <ul class="title">
+                <li style="width: 450px">歌曲</li>
+                <li style="width: 200px">歌手</li>
+                <li style="width: 120px">时长</li>
+                <li style="width: 100px">播放</li>
+            </ul>
+            <div class="list">
+                <span class="count">1</span>
+                <span class="music-name">播放LOVELESS WORLD</span>
+                <span class="singer">μ's</span>
+                <span class="time-length">05:15</span>
+                <span class="time-length">播放</span>
+            </div>
+            <div class="list">
+                <span class="count">1</span>
+                <span class="music-name">播放LOVELESS WORLD</span>
+                <span class="singer">μ's</span>
+                <span class="time-length">05:15</span>
+                <span class="time-length">播放</span>
+            </div>
+            <div class="list">
+                <span class="count">1</span>
+                <span class="music-name">播放LOVELESS WORLD</span>
+                <span class="singer">μ's</span>
+                <span class="time-length">05:15</span>
+                <span class="time-length">播放</span>
+            </div>
+            <div class="list">
+                <span class="count">1</span>
+                <span class="music-name">播放LOVELESS WORLD</span>
+                <span class="singer">μ's</span>
+                <span class="time-length">05:15</span>
+                <span class="time-length">播放</span>
+            </div>
+            <div class="list">
+                <span class="count">1</span>
+                <span class="music-name">播放LOVELESS WORLD</span>
+                <span class="singer">μ's</span>
+                <span class="time-length">05:15</span>
+                <span class="time-length">播放</span>
+            </div>
+            <div class="list">
+                <span class="count">1</span>
+                <span class="music-name">播放LOVELESS WORLD</span>
+                <span class="singer">μ's</span>
+                <span class="time-length">05:15</span>
+                <span class="time-length">播放</span>
+            </div>
+            <div class="list">
+                <span class="count">1</span>
+                <span class="music-name">播放LOVELESS WORLD</span>
+                <span class="singer">μ's</span>
+                <span class="time-length">05:15</span>
+                <span class="time-length">播放</span>
+            </div>
+        </div>
+        <div class="other-list">
+            <h3 style="font-weight: 400;">其他歌单</h3>
+            <img class="other-sheet" src="images/interfase.png">
+            <img class="other-sheet" src="images/interfase.png">
+            <img class="other-sheet" src="images/interfase.png">
+            <img class="other-sheet" src="images/interfase.png">
+        </div>
+    </div>
+    <div class="main-center sheetlist" style="margin-top: 80px">
+        <div class="list-title">
+            <img src="images/line-2.png">
+            <div>
+                <h3>Comment</h3>
+                <h3>评论</h3>
+            </div>
+        </div>
+        <div class="commit clearfix">
+            <img class="commit-cover" src="images/interfase.png">
+            <span class="commit-arc">◆</span>
+            <span class="commit-arc commit-arc-under">◆</span>
+            <textarea class="commit-text"></textarea>
+            <a class="sub-commit">评论</a>
+        </div>
+        <div class="commit-list clearfix">
+            <div class="commit-list-item clearfix">
+                <img class="commit-cpver" src="images/interfase.png">
+                <div class="clearfix">
+                    <span class="commit-name">哈哈哈哈哈</span>
+                    <span class="commit-content">: 记忆最深刻的是太一把素娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽工作一年了在看应用怪兽……阿和，亚古兽还说：太一你真的长大了12:12</span>
+
+                    <p style="margin-top: 15px">
+                        <span class="commit-time">2016年10月3日</span>
+                        <span class="replpy">回复</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="commit-list-item clearfix">
+                <img class="commit-cpver" src="images/interfase.png">
+                <div class="clearfix">
+                    <span class="commit-name">哈哈哈哈哈</span>
+                    <span class="commit-content">: 记忆最深刻的是太一把素娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽工作一年了在看应用怪兽……阿和，亚古兽还说：太一你真的长大了12:12</span>
+
+                    <p style="margin-top: 15px">
+                        <span class="commit-time">2016年10月3日</span>
+                        <span class="replpy">回复</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="commit-list-item clearfix">
+                <img class="commit-cpver" src="images/interfase.png">
+                <div class="clearfix">
+                    <span class="commit-name">哈哈哈哈哈</span>
+                    <span class="commit-content">: 记忆最深刻的是太一把素娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽工作一年了在看应用怪兽……阿和，亚古兽还说：太一你真的长大了12:12</span>
+
+                    <p style="margin-top: 15px">
+                        <span class="commit-time">2016年10月3日</span>
+                        <span class="replpy">回复</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="commit-list-item clearfix">
+                <img class="commit-cpver" src="images/interfase.png">
+                <div class="clearfix">
+                    <span class="commit-name">哈哈哈哈哈</span>
+                    <span class="commit-content">: 记忆最深刻的是太一把素娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽工作一年了在看应用怪兽……阿和，亚古兽还说：太一你真的长大了12:12</span>
+
+                    <p style="margin-top: 15px">
+                        <span class="commit-time">2016年10月3日</span>
+                        <span class="replpy">回复</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="commit-list-item clearfix">
+                <img class="commit-cpver" src="images/interfase.png">
+                <div class="clearfix">
+                    <span class="commit-name">哈哈哈哈哈</span>
+                    <span class="commit-content">: 记忆最深刻的是太一把素娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽工作一年了在看应用怪兽……阿和，亚古兽还说：太一你真的长大了12:12</span>
+
+                    <p style="margin-top: 15px">
+                        <span class="commit-time">2016年10月3日</span>
+                        <span class="replpy">回复</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="commit-list-item clearfix">
+                <img class="commit-cpver" src="images/interfase.png">
+                <div class="clearfix">
+                    <span class="commit-name">哈哈哈哈哈</span>
+                    <span class="commit-content">: 记忆最深刻的是太一把素娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽工作一年了在看应用怪兽……阿和，亚古兽还说：太一你真的长大了12:12</span>
+
+                    <p style="margin-top: 15px">
+                        <span class="commit-time">2016年10月3日</span>
+                        <span class="replpy">回复</span>
+                    </p>
+                </div>
+
+            </div>
+            <div class="commit-list-item clearfix">
+            <img class="commit-cpver" src="images/interfase.png">
+            <div class="clearfix">
+                <span class="commit-name">哈哈哈哈哈</span>
+                <span class="commit-content">: 记忆最深刻的是太一把素娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没娜推向hhhhhhhhhhhhhhhhhhh即使十多年过去了也还是一如既往地喜欢这首歌。最近补了tri第三章，想起来重温以前的歌。有很久没听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了听了，一听到旋律，就想起了小时候看DA的时光。【诶，我对DM系列也算是真爱了，从小看到大，上大学了还在看合体战争，现在都现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽现在都工作一年了在看应用怪兽工作一年了在看应用怪兽……阿和，亚古兽还说：太一你真的长大了12:12</span>
+
+                <p style="margin-top: 15px">
+                    <span class="commit-time">2016年10月3日</span>
+                    <span class="replpy">回复</span>
+                </p>
+            </div>
+
+        </div>
+        </div>
+    </div>
+    <div class="main-center sheetlist" style="margin-top: 80px">
+        <div class="list-title">
+            <img src="images/line-2.png">
+            <div>
+                <h3>MyList</h3>
+                <h3>我的歌单</h3>
+            </div>
+
+        </div>
+
+        <div class="SheetlistOfMy clearfix">
+            <img class="sheetcover" src="images/pictrue1.png">
+            <div style="width: 299px;" class="sheetcover">
+                <img src="images/pictrue2.png">
+                <img src="images/pictrue3.png">
+            </div>
+            <img class="sheetcover" src="images/pictrue4.png">
+        <div style="width: 299px;" class="sheetcover">
+            <img src="images/picture5.png">
+            <a id="addSheet"><img src="images/add.png"></a>
+        </div>
+        </div>
+    </div>
+
+    <footer class="footer" style="display:block;background-color: #222831;margin-top: 200px;
+" >
+        <div class="main-center">
+            <img class="footer-image" src="images/footer-2.png">
+        </div>
+    </footer>
+
+</main>
+<script type="text/javascript" src="js/Login&Register.js"></script>
+<script>
+
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+
+
+
+
+.banner{
+    /*position: relative;*/
+    height: 720px;
+    /*background: url("../images/banner.png");*/
+    overflow: hidden;
+}
+.banner-container{
+    /*overflow: hidden;*/
+}
+.banner image{
+    z-index: 5;
+}
+.banner-arrow{
+    width: 56px;
+    height: 112px;
+    margin-top: 309px;
+    z-index: 10;
+}
+.banner-arrow-down{
+    display: block;
+    margin-top: -10px;
+}
+.banner-round{
+    width: 291px;
+    margin: 0 auto;
+    margin-top: 669px;
+}
+.banner-round-item{
+    display: inline-block;
+    margin-right: 54px;
+    width: 12px;
+    height: 12px;
+    background-color: #a8a1ba;
+    /*background-color: #490e67;*/
+    border-radius: 6px;
+}
+/*=========content============*/
+.content-title{
+    margin-top: 120px;
+    margin-bottom: 52px;
+    color: #00adb5;
+    font-size: 36px;
+    font-weight: lighter;
+    letter-spacing: 13px;
+}
+.mylist{
+    position: relative;
+}
+
+.mylist-first{
+    display: inline-block;
+    width: 1000px;
+    height: 480px;
+    background: url("../images/mylist-first.png");
+
+}
+.mylist-first-hover{
+    position: absolute;
+    bottom: 0;
+    height: 200px;
+    width: inherit;
+    background-color: #3f434b;
+    opacity: 0.8;
+}
+.mylist-title {
+    margin-top: 32px;
+    margin-left: 52px;
+    font-size: 50px;
+    font-weight: lighter;
+    color: rgb(254, 253, 254);
+}
+.mylist-title-second{
+    margin-top: 14px;
+    margin-left: 52px;
+    width: 896px;
+    font-size: 20px;
+    color: rgb(254, 253, 254);
+    line-height: 2;
+    font-weight: lighter;
+}
+.mylist-other{
+    display: inline-block;
+    background: url("../images/mylist-other1.png");
+    position: absolute;
+    right: 0;
+    height: 232px;
+    width: 460px;
+}
+
+.mylist-other-hover{
+    display: none;
+    position: relative;
+    overflow: hidden;
+    height: 232px;
+    width: 460px;
+    background-color: #3f434b;
+    opacity: 0.502;
+}
+.mylist-other-hover h1{
+    display: block;
+    position: absolute;
+    top:30%;
+    left: 30%;
+    font-size: 40px;
+    font-weight: lighter;
+    color: rgb(254, 253, 254);
+}
+.otherlist{
+    height: 295px;
+}
+.otherlist-item{
+    display: inline-block;
+    height: 295px;
+    width: 295px;
+    background: url("../images/mv.png") no-repeat;
+    margin-right: 94px;
+}
+.otherlist-item-hover{
+    display: none;
+    position: relative;
+    height: 295px;
+    width: 295px;
+    background-color: rgb(34, 40, 49);
+    opacity: 0.502;
+}
+.triangle{
+    position: absolute;
+    left: 55px;
+}
+.hover-font {
+    position: absolute;
+    left: 65px;
+    top: 135px;
+    font-size: 50px;
+    color: rgb(253, 252, 254);
+    line-height: 0.8;
+    font-weight: lighter;
+}
+
